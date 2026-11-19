@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Creepster&family=Rubik:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="estilo.css">
+    <title>Contacto - El Extraño Mundo de Jack</title>
+    <style>
+        .mensaje-confirmacion-contacto {
+            display: none;
+            margin-top: 18px;
+            padding: 18px 20px;
+            background-color: #140808;
+            border: 2px solid #D97732;
+            border-radius: 10px;
+            color: #ffffff;
+            line-height: 1.5;
+        }
+
+        .mensaje-confirmacion-contacto.visible {
+            display: block;
+        }
+
+        .mensaje-confirmacion-contacto h3 {
+            margin: 0 0 8px 0;
+            color: #D97732;
+            font-size: 20px;
+        }
+
+        .mensaje-confirmacion-contacto p {
+            margin: 0 0 12px 0;
+            font-size: 14px;
+            color: #e6e6e6;
+        }
+
+        .btn-nuevo-mensaje {
+            font-family: 'Rubik', sans-serif;
+            font-size: 13px;
+            font-weight: 600;
+            color: #ffffff;
+            background-color: #1a1a1a;
+            border: 1px solid #800000;
+            padding: 8px 16px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+        }
+
+        .btn-nuevo-mensaje:hover {
+            background-color: #D97732;
+            border-color: #D97732;
+            color: #000000;
+        }
+    </style>
+</head>
+<style id="estilo-menu-desplegable-inline">
+    #menu_bar.desplegado ul,
+    #menu_bar.responsive ul {
+        display: flex !important;
+        flex-direction: column !important;
+        position: absolute !important;
+        top: 100% !important;
+        right: 40px !important;
+        left: auto !important;
+        width: auto !important;
+        min-width: 210px !important;
+        background-color: #0d0d0d !important;
+        border: 2px solid #800000 !important;
+        border-radius: 8px !important;
+        padding: 14px 20px !important;
+        gap: 14px !important;
+        z-index: 99999 !important;
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.92) !important;
+    }
+
+    #menu_bar.desplegado ul li,
+    #menu_bar.responsive ul li {
+        display: block !important;
+    }
+
+    #menu_bar.desplegado ul li a,
+    #menu_bar.responsive ul li a {
+        display: inline-block !important;
+    }
+
+    #menu_bar.desplegado ul li:has(.menu-rojo),
+    #menu_bar.responsive ul li:has(.menu-rojo) {
+        display: none !important;
+    }
+
+    @media (max-width: 768px) {
+        #menu_bar.desplegado ul,
+        #menu_bar.responsive ul {
+            left: 0 !important;
+            right: 0 !important;
+            width: 100% !important;
+            border-radius: 0 !important;
+            border-left: none !important;
+            border-right: none !important;
+        }
+    }
+</style>
+<script>
+    (function () {
+        function alternarMenuDesplegable(e) {
+            if (e) {
+                e.preventDefault();
+                e.stopPropagation();
+            }
+            var nav = document.getElementById("menu_bar");
+            if (!nav) return;
+            var estaAbierto = nav.classList.contains("desplegado") || nav.classList.contains("responsive");
+            nav.classList.toggle("desplegado", !estaAbierto);
+            nav.classList.toggle("responsive", !estaAbierto);
+        }
+
+        document.addEventListener("click", function (e) {
+            var gatillo = e.target.closest(".menu-rojo, .icon");
+            if (gatillo) {
+                alternarMenuDesplegable(e);
+                return;
+            }
+            var nav = document.getElementById("menu_bar");
+            if (nav && !e.target.closest("#menu_bar")) {
+                nav.classList.remove("desplegado");
+                nav.classList.remove("responsive");
+            }
+        });
+    })();
+</script>
+<body>
+    <header>
+        <div>
+            <img src="imagenes/logo.png" alt="Logo El Extraño Mundo de Jack">
+        </div>
+        <a href="javascript:void(0);" class="icon" onclick="myFunction()"><i class="fa fa-bars"></i></a>
+        <nav id="menu_bar" class="barratop">
+            <ul>
+                <li><a href="index.html">INICIO</a></li>
+                <li><a href="galeria.html">GALERÍA</a></li>
+                <li><a href="historia.html">HISTORIA</a></li>
+                <li><a href="mundos.html">MUNDOS</a></li>
+                <li><a href="musica.html">MÚSICA</a></li>
+                <li><a href="contacto.html">CONTACTO</a></li>
+                <li><a href="#" class="menu-rojo"><i class="fa fa-bars"></i></a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="contenido-contacto">
+        <h1 class="titulo-contacto">CONTACTO</h1>
+        <p class="bajada-contacto">Dejanos tu mensaje sobre la película, los personajes o el proyecto.</p>
+
+        <section class="caja-formulario">
+            <h2>ENVÍA TU MENSAJE</h2>
+
+            <form id="form-contacto" novalidate>
+                <div class="campo-form">
+                    <label for="nombre">Nombre</label>
+                    <input type="text" id="nombre" name="nombre" placeholder="Tu nombre" required>
+                </div>
+
+                <div class="campo-form">
+                    <label for="correo">Correo electrónico</label>
+                    <input type="email" id="correo" name="correo" placeholder="tu@correo.com" required>
+                </div>
+
+                <div class="campo-form">
+                    <label for="asunto">Asunto</label>
+                    <select id="asunto" name="asunto">
+                        <option value="Consulta" selected>Consulta</option>
+                        <option value="Galería y personajes">Galería y personajes</option>
+                        <option value="Música y banda sonora">Música y banda sonora</option>
+                        <option value="Comentario general">Comentario general</option>
+                    </select>
+                </div>
+
+                <div class="campo-form">
+                    <label for="mensaje">Mensaje</label>
+                    <textarea id="mensaje" name="mensaje" rows="5" placeholder="Escribí tu mensaje..." required></textarea>
+                </div>
+
+                <button type="submit" class="btn-enviar-contacto"><i class="fa fa-paper-plane"></i> ENVIAR</button>
+            </form>
+
+            <div id="confirmacion-contacto" class="mensaje-confirmacion-contacto" aria-live="polite">
+                <h3>Mensaje enviado</h3>
+                <p id="detalle-confirmacion"></p>
+                <button type="button" id="btn-nuevo-mensaje" class="btn-nuevo-mensaje">Enviar otro mensaje</button>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="redes">
+            <i class="fa fa-facebook-square"></i> Facebook 
+            <i class="fa fa-twitter"></i> Twitter 
+            <i class="fa fa-youtube-play"></i> Youtube 
+            <i class="fa fa-instagram"></i> Instagram 
+            <span>© Disney / Touchstone Pictures.</span>
+        </div>
+    </footer>
+
+    <script src="images.js"></script>
+    <script>
+        (function () {
+            const form = document.getElementById('form-contacto');
+            const confirmacion = document.getElementById('confirmacion-contacto');
+            const detalle = document.getElementById('detalle-confirmacion');
+            const btnNuevo = document.getElementById('btn-nuevo-mensaje');
+
+            if (!form || !confirmacion || !detalle) return;
+
+            form.addEventListener('submit', function (e) {
+                e.preventDefault();
+
+                const nombreInput = document.getElementById('nombre');
+                const correoInput = document.getElementById('correo');
+                const asuntoInput = document.getElementById('asunto');
+                const mensajeInput = document.getElementById('mensaje');
+
+                const nombre = nombreInput ? nombreInput.value.trim() : '';
+                const correo = correoInput ? correoInput.value.trim() : '';
+                const asunto = asuntoInput ? asuntoInput.value : 'Consulta';
+                const mensaje = mensajeInput ? mensajeInput.value.trim() : '';
+
+                if (!nombre || !correo || !mensaje) {
+                    detalle.textContent = 'Completá nombre, correo electrónico y mensaje antes de enviar.';
+                    confirmacion.classList.add('visible');
+                    return;
+                }
+
+                detalle.textContent = 'Gracias, ' + nombre + '. Tu mensaje sobre "' + asunto + '" quedó registrado (' + correo + ').';
+                confirmacion.classList.add('visible');
+                form.reset();
+            });
+
+            if (btnNuevo) {
+                btnNuevo.addEventListener('click', function () {
+                    confirmacion.classList.remove('visible');
+                    const nombreInput = document.getElementById('nombre');
+                    if (nombreInput) nombreInput.focus();
+                });
+            }
+        })();
+    </script>
+</body>
+</html>
