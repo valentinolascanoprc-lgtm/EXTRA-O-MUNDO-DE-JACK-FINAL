@@ -409,7 +409,7 @@
     </footer>
 
     <script>
-        function configurarCandidatosVideo(videoId, estadoId, nombresArchivo) {
+        function configurarCandidatosVideo(videoId, nombresArchivo) {
             const video = document.getElementById(videoId);
             if (!video) return;
 
@@ -435,7 +435,7 @@
             probarSiguiente();
         }
 
-        configurarCandidatosVideo("vid-whatsapp", "estado-whatsapp", [
+        configurarCandidatosVideo("vid-whatsapp", [
             "WhatsApp Video 2026-11-19 at 11.23.01 AM - copia.mp4",
             "WhatsApp Video 2026-11-19 at 11.23.01 AM.mp4",
             "video_1.mp4",
