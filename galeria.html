@@ -380,7 +380,7 @@
                     <video id="vid-whatsapp" controls preload="metadata" playsinline></video>
                     <div class="pie-video-detras">
                         <h3>Stop-Motion Artesanal</h3>
-                        <span id="estado-whatsapp" style="display: none;"></span>
+                        
                     </div>
                 </article>
             </div>
@@ -411,8 +411,7 @@
     <script>
         function configurarCandidatosVideo(videoId, estadoId, nombresArchivo) {
             const video = document.getElementById(videoId);
-            const estado = document.getElementById(estadoId);
-            if (!video || !estado) return;
+            if (!video) return;
 
             const rutasCandidatas = [];
             nombresArchivo.forEach((nombre) => {
@@ -425,17 +424,12 @@
 
             function probarSiguiente() {
                 if (indice >= rutasCandidatas.length) {
-                    estado.textContent = "No se encontró el archivo. Probá ponerlo en 'imagenes y videos' o avisame su nombre exacto.";
                     return;
                 }
                 const rutaActual = rutasCandidatas[indice++];
                 video.src = encodeURI(rutaActual);
                 video.load();
             }
-
-            video.addEventListener("loadedmetadata", function () {
-                estado.textContent = "";
-            });
 
             video.addEventListener("error", probarSiguiente);
             probarSiguiente();
