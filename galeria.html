@@ -380,7 +380,7 @@
                     <video id="vid-whatsapp" controls preload="metadata" playsinline></video>
                     <div class="pie-video-detras">
                         <h3>Stop-Motion Artesanal</h3>
-                        <span id="estado-whatsapp">Click para pantalla completa con sonido</span>
+                        <span id="estado-whatsapp" style="display: none;"></span>
                     </div>
                 </article>
             </div>
@@ -434,7 +434,7 @@
             }
 
             video.addEventListener("loadedmetadata", function () {
-                estado.textContent = "Listo: " + decodeURIComponent(video.src.split("/").pop());
+                estado.textContent = "";
             });
 
             video.addEventListener("error", probarSiguiente);
